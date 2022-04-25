@@ -1,22 +1,32 @@
 public class Rotor {
+    private int type;
+    private int ring_setting;
+    private int starting_position;
     private int[] rotor;
     private int[] reverse_rotor;
     private Rotor nextRotor; //rotor to the left
     private int turning_point; //the letter on which the next rotor turns
     private int top_position; //the letter on top
-    private int starting_position;
-    private int ring_setting;
 
-    public Rotor(int type, int starting_position, int ring_setting, Rotor nextRotor) {
-        setRotor(type);
-        this.starting_position = starting_position;
-        this.ring_setting = ring_setting;
-        rotate(ring_setting);
+    public Rotor(Rotor nextRotor) {
+        this.type = 1;
+        this.ring_setting = 0;
+        this.starting_position = 0;
         this.nextRotor = nextRotor;
-        this.top_position = starting_position;
+        top_position = starting_position;
+        setRotor(this.type);
     }
 
-    private void setRotor(int type) {
+//    public Rotor(int type, int starting_position, int ring_setting, Rotor nextRotor) {
+//        setRotor(type);
+//        this.starting_position = starting_position;
+//        this.ring_setting = ring_setting;
+//        rotate(ring_setting);
+//        this.nextRotor = nextRotor;
+//        this.top_position = starting_position;
+//    }
+
+    public void setRotor(int type) {
         String wiring = "";
         this.rotor = new int[26];
         this.reverse_rotor = new int[26];
@@ -43,6 +53,15 @@ public class Rotor {
         for (int i = 0; i < rotor.length; i++) {
             reverse_rotor[rotor[i]] = i;
         }
+    }
+
+    public void setRingSetting(int ring_setting) {
+        this.ring_setting = ring_setting;
+        rotate(ring_setting);
+    }
+
+    public void setStartingPosition(int starting_position) {
+        this.starting_position = starting_position;
     }
 
     public void reset() {

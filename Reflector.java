@@ -1,9 +1,15 @@
 import java.util.Arrays;
 
 public class Reflector {
+    int type;
     private int[] reflector;
 
-    public Reflector(int type) {
+    public Reflector() {
+        type = 1;
+        setReflector(1);
+    }
+
+    public void setReflector(int type) {
         String wiring = "";
         this.reflector = new int[26];
         if (type == 1) { //all these are taken from wikipedia, these were the 5 types of reflectors available
